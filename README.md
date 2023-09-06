@@ -11,6 +11,12 @@ npm install
 npm run migrations:run
 ```
 
+# Seed Data
+
+```sh
+npm run seed:all
+```
+
 # Run in dev mode
 
 ```sh
