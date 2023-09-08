@@ -1,12 +1,12 @@
-const boom = require('@hapi/boom');
 const CategoryService = require('../services/category.service');
+const CheckRoles = require('../utils/checkRoles');
+const CheckJWT = require('../utils/checkJwt');
 const service = new CategoryService();
 
 const addCategory = async (_, { dto }, context) => {
-  const { user } = await context.authenticate('jwt', { sesion: false });
-  if (!user) {
-    throw boom.unauthorized('You must login to perform this action');
-  }
+  const user = await CheckJWT(context);
+  CheckRoles(user, 'admin');
+
   const newCategory = await service.create(dto);
   return newCategory;
 };

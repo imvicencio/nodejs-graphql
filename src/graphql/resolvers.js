@@ -9,6 +9,13 @@ const {
 const { login } = require('./auth.resolvers');
 const { addCategory } = require('./category.resolvers');
 
+const { RegularExpression } = require('graphql-scalars');
+
+const CategoryNameType = new RegularExpression(
+  'CategoryNameType',
+  /^[a-zA-Z0-9 ]*$/
+);
+
 const resolvers = {
   Query: {
     hello: () => 'hello world',
@@ -24,6 +31,7 @@ const resolvers = {
     login,
     addCategory,
   },
+  CategoryNameType,
 };
 
 module.exports = resolvers;
