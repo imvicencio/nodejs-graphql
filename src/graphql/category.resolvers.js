@@ -11,4 +11,9 @@ const addCategory = async (_, { dto }, context) => {
   return newCategory;
 };
 
-module.exports = { addCategory };
+const getCategory = async (_, { id }) => {
+  const categories = await service.findOne(id);
+  return categories;
+};
+
+module.exports = { addCategory, getCategory };

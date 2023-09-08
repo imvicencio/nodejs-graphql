@@ -23,10 +23,17 @@ const deleteProduct = async (_, { id }) => {
   return deletedProduct.id;
 };
 
+
+const getProductsByCategory = async (_, { id }) => {
+  const products = await service.find({ category: id });
+  return products;
+};
+
 module.exports = {
   getProduct,
   getProducts,
   addProduct,
   updateProduct,
   deleteProduct,
+  getProductsByCategory,
 };
